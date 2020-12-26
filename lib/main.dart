@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
 import 'randomWords.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  configureApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
