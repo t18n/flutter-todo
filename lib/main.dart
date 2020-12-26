@@ -12,9 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
+      title: 'Todo | Home',
       theme: ThemeData(
-        // Add the 3 lines from here...
         primaryColor: Colors.amberAccent,
       ),
       home: RandomWords(),
