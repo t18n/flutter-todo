@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/widgets/todolist.dart';
 
 class Home extends StatefulWidget {
-  final List<String> _items = List.generate(10, (i) => i.toString());
+  final List<Task> _items = [
+    Task(id: '1', task: 'Task 1', isDone: false),
+    Task(id: '2', task: 'Task 2', isDone: false),
+    Task(id: '3', task: 'Task 3', isDone: true),
+    Task(id: '4', task: 'Task 4', isDone: false)
+  ];
 
   @override
   _HomeState createState() => _HomeState();
@@ -21,7 +26,17 @@ class _HomeState extends State<Home> {
 
   void sorting() {
     setState(() {
-      widget._items.sort();
+      widget._items.sort((a, b) => a.id.compareTo(b.id));
+    });
+  }
+
+  void onToggleDone(bool, String id) {
+    setState(() {
+      if (!bool) {
+        widget._items.firstWhere((el) => el.id == id).isDone = false;
+      } else {
+        widget._items.firstWhere((el) => el.id == id).isDone = true;
+      }
     });
   }
 
@@ -47,6 +62,7 @@ class _HomeState extends State<Home> {
       body: TodoList(
         items: widget._items,
         reorderData: reorderData,
+        onToggleDone: onToggleDone,
       ),
     );
   }
