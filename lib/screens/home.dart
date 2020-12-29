@@ -1,17 +1,19 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/widgets/createTaskForm.dart';
 import 'package:flutter_todo/widgets/todolist.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
+import 'package:faker/faker.dart';
 
 final uuid = Uuid();
 
 class Home extends StatefulWidget {
   final List<Task> _items = [
-    Task(id: uuid.v4(), task: 'Task 1', isDone: false),
-    Task(id: uuid.v4(), task: 'Task 2', isDone: false),
-    Task(id: uuid.v4(), task: 'Task 3', isDone: true),
-    Task(id: uuid.v4(), task: 'Task 4', isDone: false)
+    Task(id: uuid.v4(), task: faker.lorem.sentence(), isDone: false),
+    Task(id: uuid.v4(), task: faker.lorem.sentence(), isDone: false),
+    Task(id: uuid.v4(), task: faker.lorem.sentence(), isDone: true),
+    Task(id: uuid.v4(), task: faker.lorem.sentence(), isDone: false)
   ];
 
   @override
