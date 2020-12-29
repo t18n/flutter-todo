@@ -18,3 +18,6 @@ Make sure you have `Flutter` installed as per the official documentation.
   ```
 - Install dependencies with `flutter pub get`
 - Run the app with `flutter run`
+
+## Demo
+![Flutter todo app](./screenshots/flutter_simple_timer.gif)
