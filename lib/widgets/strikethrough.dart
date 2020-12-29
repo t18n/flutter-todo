@@ -12,13 +12,13 @@ class StrikeThrough extends StatelessWidget {
     if (todoToggle == false) {
       return Text(
         todoText,
-        style: TextStyle(fontSize: 22.0),
+        style: TextStyle(fontSize: 16),
       );
     } else {
       return Text(
         todoText,
         style: TextStyle(
-            fontSize: 22.0,
+            fontSize: 16,
             decoration: TextDecoration.lineThrough,
             color: Colors.redAccent,
             fontStyle: FontStyle.italic),

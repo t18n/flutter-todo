@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/createTaskForm.dart';
 import 'package:flutter_todo/widgets/todolist.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:uuid/uuid.dart';
+
+final uuid = Uuid();
 
 class Home extends StatefulWidget {
   final List<Task> _items = [
-    Task(id: '1', task: 'Task 1', isDone: false),
-    Task(id: '2', task: 'Task 2', isDone: false),
-    Task(id: '3', task: 'Task 3', isDone: true),
-    Task(id: '4', task: 'Task 4', isDone: false)
+    Task(id: uuid.v4(), task: 'Task 1', isDone: false),
+    Task(id: uuid.v4(), task: 'Task 2', isDone: false),
+    Task(id: uuid.v4(), task: 'Task 3', isDone: true),
+    Task(id: uuid.v4(), task: 'Task 4', isDone: false)
   ];
 
   @override
@@ -40,30 +45,60 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void onAddNewTask(String text) {
+    if (text.isNotEmpty) {
+      setState(() {
+        widget._items.add(Task(id: uuid.v4(), task: text, isDone: false));
+      });
+    } else {
+      Fluttertoast.showToast(
+          msg: 'Task cannot be empty',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.blueAccent);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text(
-          "TODO List",
-          style: TextStyle(color: Colors.black),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text(
+            "TODO List",
+            style: TextStyle(color: Colors.black),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.sort_by_alpha),
+              tooltip: "Sort",
+              onPressed: sorting,
+            )
+          ],
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.sort_by_alpha),
-            tooltip: "Sort",
-            onPressed: sorting,
-          )
-        ],
-      ),
-      body: TodoList(
-        items: widget._items,
-        reorderData: reorderData,
-        onToggleDone: onToggleDone,
-      ),
-    );
+        body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                  flex: 0,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                    child: CreateTaskForm(
+                      onButtonPressed: onAddNewTask,
+                    ),
+                  )),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                child: TodoList(
+                  items: widget._items,
+                  reorderData: reorderData,
+                  onToggleDone: onToggleDone,
+                ),
+              ))
+            ]));
   }
 }

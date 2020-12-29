@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/createTaskForm.dart';
 import 'package:flutter_todo/widgets/strikethrough.dart';
 
 class Task {
@@ -19,7 +20,7 @@ class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReorderableListView(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+      padding: EdgeInsets.zero,
       onReorder: reorderData,
       children: <Widget>[
         for (var item in items)
