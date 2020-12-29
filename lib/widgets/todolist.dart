@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/widgets/createTaskForm.dart';
 import 'package:flutter_todo/widgets/strikethrough.dart';
 
 class Task {

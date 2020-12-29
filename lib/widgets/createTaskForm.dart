@@ -10,14 +10,12 @@ class CreateTaskForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
         child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-                flex: 4,
+                flex: 5,
                 child: TextFormField(
                   controller: textController,
                   decoration: InputDecoration(
